@@ -1,0 +1,25 @@
+.banner{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  h1 {
+    font-size: 5rem;
+  }
+}
+.banner1 {
+  background: $dark-blue;
+  border-radius: 20px 0px 0px 20px;
+  width: 50%;
+  height: 30rem;
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.banner2 {
+  background: $dark-blue;
+  border-radius: 0px 20px 20px 0px;
+  width: 50%;
+  height: 30rem;
+  margin-left: 5px;
+  margin-right: 10px;
+}

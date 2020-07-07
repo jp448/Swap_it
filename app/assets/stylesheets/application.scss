@@ -11,3 +11,26 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.icon-b {
+  font-size: 25px;
+  background: -webkit-linear-gradient($blue, $green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue {
+  color: $blue;
+}
+
+.green {
+  color: $green;
+}
+
+.white {
+  color: $white;
+}
+
+ ul {
+  list-style-type: none;
+ }

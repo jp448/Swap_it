@@ -3,19 +3,23 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @items = policy_scope(Item)
   end
 
   def show
     @item = Item.find(params[:id])
+    authorize @item
   end
 
   def new
     @item = Item.new
+    authorize @item
   end
 
   def create
     @item = item.new(item_params)
     @item.user = current_user
+    authorize @item
     if @item.save!
       redirect_to item_path(@item)
     else
@@ -25,9 +29,11 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    authorize @item
   end
 
   def update
+    authorize @item
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
