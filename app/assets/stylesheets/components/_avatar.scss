@@ -7,14 +7,29 @@
   border-radius: 50%;
 }
 .avatar-bordered {
-  width: 40px;
+  width: 35px;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
+  height: 35px;
+  object-fit: cover;
 }
+
+.avatar-bordered-lg {
+  width: 50px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  height: 50px;
+  object-fit: cover;
+}
+
 .avatar-square {
   width: 40px;
   border-radius: 0px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
+}
+
+.smile-icon {
+  font-size: 50px;
+  color: $yellow;
 }

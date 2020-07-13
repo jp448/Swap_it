@@ -10,3 +10,20 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-lewagon .heart {
+  font-size: 15px;
+}
+
+.navbar-nav .icon-b {
+  font-size: 15px;
+  background: -webkit-linear-gradient($blue, $green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-nav .icon-b:hover {
+  background: -webkit-linear-gradient($green, $blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
