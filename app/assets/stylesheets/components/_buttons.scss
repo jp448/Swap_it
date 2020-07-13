@@ -1,0 +1,23 @@
+.swap-it-btn {
+  background: linear-gradient(45deg, $blue, $green);
+  width: 20rem;
+  border: transparent;
+}
+
+.swap-it-btn:hover {
+  background: linear-gradient(45deg, $green, $blue);
+  color: $blue;
+}
+
+.save-btn {
+  width: 20rem;
+}
+
+.message-btn {
+  width: 20rem;
+}
+
+.navbar-btn {
+  width: 4rem;
+  margin-right: 10px;
+}

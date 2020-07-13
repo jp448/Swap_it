@@ -19,6 +19,12 @@
   -webkit-text-fill-color: transparent;
 }
 
+.icon-b:hover {
+  background: -webkit-linear-gradient($green, $blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .blue {
   color: $blue;
 }
@@ -29,6 +35,14 @@
 
 .white {
   color: $white;
+}
+
+.white:hover {
+  color: $blue;
+}
+
+.red {
+  color: $red;
 }
 
  ul {
