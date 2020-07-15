@@ -2,6 +2,7 @@ require 'faker'
 require 'open-uri'
 
 puts 'clean db'
+Tag.destroy_all
 Item.destroy_all
 User.destroy_all
 puts 'db cleaned'
@@ -146,13 +147,29 @@ puts 'created 1 user'
 
 puts 'Finished Users!'
 
+puts 'creating tags'
+
+tags = ['kitchen', 'pet', 'household', 'lesuire', 'game', 'furniture', 'books', 'ikea', 'plants', 'tech']
+
+tags.each do |name|
+  tag = Tag.new(
+    name: name
+    )
+  tag.save
+end
+
+puts 'created tags'
+
+tags = Tag.all
+
 puts 'creating 1 item'
 photos = ['https://images.unsplash.com/photo-1585837575652-267c041d77d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60']
 item = Item.new(
   title: 'Cat Toys',
   description: 'Cat toys my cats never play with, but are still good fun',
   price: 1,
-  user: User.first
+  user: User.first,
+  tags: [Tag.second, Tag.fifth]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -166,7 +183,8 @@ item = Item.new(
   title: 'Beside Lamp',
   description: 'White lamp that could be used on a desk or nightstand',
   price: 2,
-  user: User.second
+  user: User.second,
+  tags: [Tag.third, tags[5], tags[7]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -180,7 +198,8 @@ item = Item.new(
   title: 'coffe mugs',
   description: '3 ikea coffee mugs, one with chip all others good condition',
   price: 2,
-  user: User.third
+  user: User.third,
+  tags: [Tag.first, Tag.third]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -194,7 +213,8 @@ item = Item.new(
   title: 'Start-up Books',
   description: 'stack of books about doing your own start-up',
   price: 2,
-  user: User.fourth
+  user: User.fourth,
+  tags: [tags[6], tags[4]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -208,7 +228,8 @@ item = Item.new(
   title: 'Posters',
   description: 'assortment of posters, good condition',
   price: 2,
-  user: User.fifth
+  user: User.fifth,
+  tags: [tags[2]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -222,7 +243,8 @@ item = Item.new(
   title: 'camera',
   description: 'found this old camera- still works',
   price: 2,
-  user: User.fourth
+  user: User.fourth,
+  tags: [tags[9], tags[3]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -236,7 +258,8 @@ item = Item.new(
   title: 'Ikea Chair',
   description: 'moving need to get rid of this Ikea chair',
   price: 3,
-  user: User.third
+  user: User.third,
+  tags: [tags[2], tags[5], tags[7]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -250,7 +273,8 @@ item = Item.new(
   title: 'House Plant',
   description: 'My cat keeps chewing on this house plant so I do not want it anymore',
   user: User.last,
-  price: 1
+  price: 1,
+  tags: [tags[2], tags[7], tags[8]]
   )
 item.save
 photos.each do |pic_url|
@@ -264,7 +288,8 @@ item = Item.new(
   title: 'Rug',
   description: 'Got a new rug, getting rid of old one',
   user: User.first,
-  price: 3
+  price: 3,
+  tags: [tags[2], tags[5]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')
@@ -278,7 +303,8 @@ item = Item.new(
   title: 'Game boy',
   description: 'going through some old stuff',
   user: User.last,
-  price: 3
+  price: 3,
+  tags: [tags[3], tags[4]]
   )
 photos.each do |pic_url|
   item.photos.attach(io: URI.open(pic_url), filename: 'nes.png', content_type: 'image/png')

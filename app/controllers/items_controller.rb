@@ -4,6 +4,34 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @items = policy_scope(Item)
+    if params[:tags].present?
+      @selected_tags = params[:tags].split(",")
+      @items = Item.joins(:tags).where(tags: { name: @selected_tags }).group('items.id').having("count('tags.name') = ?", @selected_tags.size)
+    else
+      @selected_tags = []
+    end
+
+    @tags = Tag.all
+
+    users = []
+    @items.each do |item|
+      users.append(item.user)
+    end
+
+    users = users.uniq
+    users.each do |user|
+      coords = user.geocode
+      user.longitude = coords[1]
+      user.latitude = coords[0]
+    end
+
+    @markers = users.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { item: user })
+      }
+    end
   end
 
   def show
@@ -55,7 +83,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def restaurant_params
+  def item_params
     params.require(:item).permit(:title, :price, :description)
   end
 end
