@@ -1,3 +1,9 @@
+<p class="mb-0 dark-blue"><%= user.username %></p>
+<% user.items.each do |item| %>
+<div>
+  <img class='product-img' src='<%= cl_image_path item.photos[0].key%>'>
+  <%= link_to item.title, item_path(item) %>
+</div>
 
-<p class="mb-0">item location</p>
+<% end %>
 
