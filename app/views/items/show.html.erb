@@ -42,7 +42,7 @@
         </div>
         <button class="btn btn-primary swap-it-btn my-1"><i class="fas fa-sync-alt"></i> Swap It</button>
         <button class="btn btn-primary save-btn my-1"> <i class="fas fa-heart red"></i> Save It</button>
-        <button class="btn btn-primary message-btn my-1"><i class="fas fa-comments blue"></i> Send a Message</button>
+        <button class="btn btn-primary message-btn my-1"><i class="fas fa-comments green"></i> Send a Message</button>
       </div>
       <div class="owners-info d-flex justify-content-around align-items-center">
         <div class="d-flex justify-content-center align-items-center">
@@ -52,6 +52,7 @@
           <div class = "avatar-info">
             <p style="font-size: 0.80rem; margin-bottom: 0;"><%= @item.user.username %></p>
             <p class="font-weight-light mb-0"><%= @item.user.location %></p>
+            <p class="font-weight-light mb-0" style="font-size: 0.80rem"><i class="fas fa-map-marker-alt blue"></i> <%= @item.user.distance_to(current_user.geocode).round(1) %> km</p>
           </div>
         </div>
         <div>
@@ -59,7 +60,7 @@
         </div>
         <div>
           <p class="mb-0">Active Since</p>
-          <p><%= @item.user.created_at.strftime("%B %d") %> 2020</p>
+          <p class="mb-0"><%= @item.user.created_at.strftime("%B %d") %> 2020</p>
         </div>
 
       </div>

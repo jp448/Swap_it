@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   get "swaped", to: 'pages#swaped'
 
   resources :items
+
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
