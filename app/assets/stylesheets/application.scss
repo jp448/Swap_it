@@ -53,3 +53,15 @@
  ul {
   list-style-type: none;
  }
+
+ .chat-container {
+  margin-right: 300px;
+  margin-left: 300px;
+ }
+
+ .chat-card {
+  background-color: $dark-blue;
+  border-radius: 20px;
+  margin-bottom: 3px;
+  padding: 10px;
+ }

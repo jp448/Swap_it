@@ -42,7 +42,8 @@
         </div>
         <button class="btn btn-primary swap-it-btn my-1"><i class="fas fa-sync-alt"></i> Swap It</button>
         <button class="btn btn-primary save-btn my-1"> <i class="fas fa-heart red"></i> Save It</button>
-        <button class="btn btn-primary message-btn my-1"><i class="fas fa-comments green"></i> Send a Message</button>
+        <%= link_to "<i class='fas fa-comments green'></i> Send a Message".html_safe, new_chatroom_path(item: @item, user: current_user), class: "btn btn-primary message-btn my-1" %>
+
       </div>
       <div class="owners-info d-flex justify-content-around align-items-center">
         <div class="d-flex justify-content-center align-items-center">
