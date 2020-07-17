@@ -3,6 +3,8 @@ require 'open-uri'
 
 puts 'clean db'
 Tag.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
 Item.destroy_all
 User.destroy_all
 puts 'db cleaned'

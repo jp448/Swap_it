@@ -8,6 +8,7 @@
   width: 56px;
   border-radius: 50%;
 }
+
 .avatar-bordered {
   width: 35px;
   border-radius: 50%;
@@ -24,11 +25,12 @@
   object-fit: cover;
 }
 
-.avatar-square {
-  width: 40px;
-  border-radius: 0px;
+.avatar-bordered-xlg {
+  width: 90px;
+  border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
+  height: 90px;
+  object-fit: cover;
 }
 
 .smile-icon {
