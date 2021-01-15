@@ -29,6 +29,12 @@ class OffersController < ApplicationController
     @my_offers = offers.select { |offer| offer.receiver_user == current_user }
   end
 
+  def offer_request
+  end
+
+  def offer_confirm
+  end
+
   protected
 
   def offer_params

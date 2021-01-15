@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['RAILS_DB_URL'] %>
   database: Swap_it_production
-  username: Swap_it
-  password: <%= ENV['SWAP_IT_DATABASE_PASSWORD'] %>
+  username: <%= ENV['RAILS_DB_USER'] %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
