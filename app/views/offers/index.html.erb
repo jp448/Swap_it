@@ -1,0 +1,51 @@
+<% if @my_offers.empty? %>
+  <div class="chat-container d-flex flex-column justify-content-center align-items-center mt-5">
+    <h2 class="center">No offers to swap yet!</h2>
+    <%= link_to "Look at items to swap!", items_path, class: "btn btn-primary save-btn my-1" %>
+  </div>
+<% else %>
+  <div class="chat-container">
+    <% @my_offers.each do |offer| %>
+      <div class="my-1">
+        <div class="card-product">
+          <img class="product-img" src="<%= cl_image_path offer.asker.photos[0].key %>">
+          <div class="card-product-infos">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h2><%= link_to offer.asker.title, item_path(offer.asker), class: "white" %></h2>
+                <p><%= offer.asker.description %></p>
+                <% offer.asker.price.to_i.times do  %>
+                  <span class="euro"><i class="fas fa-euro-sign"></i></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <%= link_to "<i class='fas fa-sync-alt icon-b navbar-brand'></i> Swap it!".html_safe, class: "btn btn-primary swap-it-btn m-3" %>
+    <%= link_to "<i class='fas fa-times red'></i> Reject Swap".html_safe, class: "btn btn-primary save-btn m-3" %>
+  </div>
+  <div class="chat-container">
+    <% @my_offers.each do |offer| %>
+      <div class="my-1">
+        <div class="card-product">
+          <img class="product-img" src="<%= cl_image_path offer.receiver.photos[0].key %>">
+          <div class="card-product-infos">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h2><%= link_to offer.receiver.title, item_path(offer.receiver), class: "white" %></h2>
+                <p><%= offer.receiver.description %></p>
+                <% offer.receiver.price.to_i.times do  %>
+                  <span class="euro"><i class="fas fa-euro-sign"></i></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -36,6 +36,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @item_liked = Liked.find_by(item_id: @item.id, user_id: current_user)
     authorize @item
   end
 
@@ -77,6 +78,11 @@ class ItemsController < ApplicationController
     redirect_to items_path, notice: 'The item was successfully destroyed.'
   end
 
+  def my_items
+    skip_authorization
+    @my_items = Item.where(user_id: current_user.id).to_a
+  end
+
   private
 
   def set_item
@@ -84,6 +90,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :price, :description)
+    params.require(:item).permit(:title, :price, :description, tag_ids: [], photos: [])
   end
 end

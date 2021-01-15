@@ -1,0 +1,37 @@
+<% if @liked_items.empty? %>
+  <div class="chat-container d-flex flex-column justify-content-center align-items-center mt-5">
+  <h2 class="center">No Items yet Liked</h2>
+  <%= link_to "View Items!", items_path, class: "btn btn-primary save-btn my-1" %>
+  </div>
+<% else %>
+  <div class="chat-container">
+    <% @liked_items.each do |item| %>
+        <div class="my-1">
+          <div class="card-product">
+            <img class="product-img" src="<%= cl_image_path item.photos[0].key %>">
+            <div class="card-product-infos">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h2><%= link_to item.title, item_path(item), class: "white" %></h2>
+                  <p><%= item.description %></p>
+                  <% item.price.to_i.times do  %>
+                    <span class="euro"><i class="fas fa-euro-sign"></i></span>
+                  <% end %>
+                </div>
+                <div class= "d-flex justify-content-center align-items-center avatar-box">
+                  <div class="pr-2">
+                   <%= cl_image_tag item.user.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %>
+                  </div>
+                  <div class = "avatar-info">
+                    <p style="font-size: 0.80rem;"><%= item.user.username %></p>
+                    <p class="font-weight-light"><%= item.user.location %></p>
+                    <p class="font-weight-light"><i class="fas fa-map-marker-alt blue"></i> <%= item.user.distance_to(current_user.geocode).round(1) %> km</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+<% end %>

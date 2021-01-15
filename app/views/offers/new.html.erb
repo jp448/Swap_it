@@ -1,0 +1,60 @@
+<div class="chat-container">
+  <h2>Item Selected to Swap for:</h2>
+  <div class="my-1">
+    <div class="card-product">
+      <img class="product-img" src="<%= cl_image_path @requested_item.photos[0].key %>">
+      <div class="card-product-infos">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h2><%= link_to @requested_item.title, item_path(@requested_item), class: "white" %></h2>
+            <p><%= @requested_item.description %></p>
+            <% @requested_item.price.to_i.times do  %>
+              <span class="euro"><i class="fas fa-euro-sign"></i></span>
+            <% end %>
+          </div>
+          <div class= "d-flex justify-content-center align-items-center avatar-box">
+            <div class="pr-2">
+             <%= cl_image_tag @requested_item.user.photo.key, class: "avatar-bordered", alt: "avatar-bordered" %>
+            </div>
+            <div class = "avatar-info">
+              <p style="font-size: 0.80rem;"><%= @requested_item.user.username %></p>
+              <p class="font-weight-light"><%= @requested_item.user.location %></p>
+              <p class="font-weight-light"><i class="fas fa-map-marker-alt blue"></i><%= @requested_item.user.distance_to(current_user.geocode).nil? ?  " Your Item" : " #{@requested_item.user.distance_to(current_user.geocode).round(1)} km" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="chat-container mt-3">
+  <h2>Your Item that you wish to Swap:</h2>
+    <div class="my-1">
+      <div class="card-product">
+        <img class="product-img" src="<%= cl_image_path @selected_item.photos[0].key %>">
+        <div class="card-product-infos">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+          <h2><%= link_to @selected_item.title, item_path(@selected_item), class: "white" %></h2>
+              <p><%= @selected_item.description %></p>
+              <% @selected_item.price.to_i.times do  %>
+                <span class="euro"><i class="fas fa-euro-sign"></i></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="chat-container mt-3 flex-column d-flex justify-content-center align-items-center">
+  <div class="container">
+    <%= simple_form_for @offer, html: { class: "login-form"} do |f|%>
+      <%= f.input :asker_id, :as => :hidden, input_html: { value: @selected_item.id } %>
+      <%= f.input :receiver_id, :as => :hidden, input_html: { value: @requested_item.id } %>
+      <%= f.submit "confirm", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

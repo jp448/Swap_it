@@ -29,7 +29,7 @@
     <div class="col-5">
       <div class="swap-action d-flex flex-column justify-content-center align-items-center mb-3">
         <h2 class="mb-1"><%= @item.title %></h2>
-        <p><%= @item.description %></p>
+        <p class="px-3"><%= @item.description %></p>
         <div class="d-flex justify-content-around align-items-center">
           <% @item.tags.each do |tag| %>
             <button class="btn btn-primary tag mx-1 mb-1"><%= tag.name %></button>
@@ -40,8 +40,12 @@
             <span class="euro-lg"><i class="fas fa-euro-sign"></i></span>
           <% end %>
         </div>
-        <button class="btn btn-primary swap-it-btn my-1"><i class="fas fa-sync-alt"></i> Swap It</button>
-        <button class="btn btn-primary save-btn my-1"> <i class="fas fa-heart red"></i> Save It</button>
+        <%= link_to "<i class='fas fa-sync-alt'></i> Swap It".html_safe, select_item_item_offers_path(@item), class: "btn btn-primary swap-it-btn my-1" %>
+        <% if @item_liked.nil? %>
+          <%= link_to "<i class='fas fa-heart red'></i> Save It".html_safe, item_liked_index_path(@item), method: :post, class: "btn btn-primary save-btn my-1" %>
+        <% else %>
+            <%= link_to "Remove it", liked_path(@item_liked), method: :delete, class: "btn btn-primary save-btn my-1" %>
+        <% end %>
         <%= link_to "<i class='fas fa-comments green'></i> Send a Message".html_safe, new_chatroom_path(item: @item, user: current_user), class: "btn btn-primary message-btn my-1" %>
 
       </div>
@@ -53,7 +57,7 @@
           <div class = "avatar-info">
             <p style="font-size: 0.80rem; margin-bottom: 0;"><%= @item.user.username %></p>
             <p class="font-weight-light mb-0"><%= @item.user.location %></p>
-            <p class="font-weight-light mb-0" style="font-size: 0.80rem"><i class="fas fa-map-marker-alt blue"></i> <%= @item.user.distance_to(current_user.geocode).round(1) %> km</p>
+            <p class="font-weight-light mb-0" style="font-size: 0.80rem"><i class="fas fa-map-marker-alt blue"></i><%= @item.user.distance_to(current_user.geocode).nil? ?  " Your Item" : " #{@item.user.distance_to(current_user.geocode).round(1)} km" %></p>
           </div>
         </div>
         <div>

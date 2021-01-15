@@ -2,9 +2,8 @@
   <h4 class="text-center">items | map</h4>
   <div class="row">
     <div class="col-4">
-      <div class="filter d-flex flex-column justify-content-center align-items-center">
-        <h3>Categories</h3>
-        <h3>Tags</h3>
+      <div class="filter d-flex flex-column justify-content-start align-items-center">
+        <h3 class="mt-4">Tags</h3>
         <div class="tag-container">
           <% @tags.each do |tag| %>
             <% tag_link = Tag.formatLink(@selected_tags.dup, tag.name) %>
@@ -15,6 +14,7 @@
             <% end %>
           <% end %>
         </div>
+        <h3 class="mt-4">Categories</h3>
       </div>
     </div>
     <div class="col-8">
@@ -38,7 +38,7 @@
                   <div class = "avatar-info">
                     <p style="font-size: 0.80rem;"><%= item.user.username %></p>
                     <p class="font-weight-light"><%= item.user.location %></p>
-                    <p class="font-weight-light"><i class="fas fa-map-marker-alt blue"></i> <%= item.user.distance_to(current_user.geocode).round(1) %> km</p>
+                    <p class="font-weight-light"><i class="fas fa-map-marker-alt blue"></i><%= item.user.distance_to(current_user.geocode).nil? ?  " Your Item" : " #{item.user.distance_to(current_user.geocode).round(1)} km" %></p>
                   </div>
                 </div>
               </div>

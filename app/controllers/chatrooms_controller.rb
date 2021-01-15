@@ -2,8 +2,8 @@ class ChatroomsController < ApplicationController
   before_action :set_chatroom, only: [:show]
 
   def index
-    @chatrooms = Chatroom.joins(:item).where(items: { user: current_user }).or(Chatroom.joins(:item).where(user: current_user))
     @chatrooms = policy_scope(Chatroom)
+    @chatrooms = Chatroom.joins(:item).where(items: { user: current_user }).or(Chatroom.joins(:item).where(user: current_user))
   end
 
   def show

@@ -151,7 +151,7 @@ puts 'Finished Users!'
 
 puts 'creating tags'
 
-tags = ['kitchen', 'pet', 'household', 'lesuire', 'game', 'furniture', 'books', 'ikea', 'plants', 'tech']
+tags = ['kitchen', 'pet', 'household', 'leisure', 'game', 'furniture', 'books', 'ikea', 'plants', 'tech']
 
 tags.each do |name|
   tag = Tag.new(

@@ -15,7 +15,10 @@
           <%= link_to "<i class='fas fa-comments green'></i>".html_safe, chatrooms_path, class: "nav-link  btn btn-primary navbar-btn" %>
         </li>
         <li class="nav-item">
-          <%= link_to "<i class='fas fa-heart red heart'></i>".html_safe, "#", class: "nav-link  btn btn-primary navbar-btn" %>
+          <%= link_to "<i class='fas fa-heart red heart'></i>".html_safe, liked_index_path, class: "nav-link  btn btn-primary navbar-btn" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "<i class='fas fa-sync-alt icon-b'></i>".html_safe, offers_path, class: "nav-link  btn btn-primary navbar-btn" %>
         </li>
         <li class="nav-item dropdown">
         <!-- upload avatar -->
@@ -25,8 +28,9 @@
           <%= image_tag "https://images.unsplash.com/photo-1472491235688-bdc81a63246e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", stylefit: :cover, class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Account", "#", class: "dropdown-item" %>
-            <%= link_to "My Items", "#", class: "dropdown-item" %>
+            <%= link_to "Account", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "My Items", my_items_items_path, class: "dropdown-item" %>
+            <%= link_to "My Swaps", my_items_items_path, class: "dropdown-item" %>
             <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

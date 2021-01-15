@@ -1,12 +1,13 @@
 <%= render 'shared/banner' %>
 <div class="container mt-3 mb-5">
   <div class="d-flex justify-content-center align-items-center">
-    <h2><%= link_to "Items", items_path, class: "white" %></h2>
+    <h2><%= link_to "Items", items_path, class: "white header" %></h2>
   </div>
     <div class="cards">
-      <% @items.each do |item| %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path item.photos[0].key %>')">
-          <%= item.tags[0].name %>
+      <% @tags.each_with_index do |tag, idx| %>
+        <% tag_link = Tag.formatLink([], tag.name) %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @tags_imgs[idx].photos[0].key %>')">
+          <%= link_to tag.name, items_path(:tags => tag_link), class: "white" %>
         </div>
       <% end %>
   </div>
