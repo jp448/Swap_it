@@ -25,7 +25,7 @@
                   <div class = "avatar-info">
                     <p style="font-size: 0.80rem;"><%= item.user.username %></p>
                     <p class="font-weight-light"><%= item.user.location %></p>
-                    <p class="font-weight-light"><i class="fas fa-map-marker-alt blue"></i> <%= item.user.distance_to(current_user.geocode).round(1) %> km</p>
+                    <p class="font-weight-light"><i class="fas fa-map-marker-alt blue"></i><%= item.user.distance_to(current_user.geocode).nil? ?  " near you" : " #{item.user.distance_to(current_user.geocode).round(1)} km" %></p>
                   </div>
                 </div>
               </div>
