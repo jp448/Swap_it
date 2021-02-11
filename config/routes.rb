@@ -17,11 +17,12 @@ Rails.application.routes.draw do
   end
 
   resources :offers, only: [:create, :index] do
-      collection do
-        get :offer_request
-      end
       member do
         get :offer_confirm
+        get :offer_decline
+      end
+      collection do
+        get :my_swaps
       end
   end
 

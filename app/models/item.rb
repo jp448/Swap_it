@@ -8,5 +8,6 @@ class Item < ApplicationRecord
   has_many :offers_as_receiver, :class_name => 'Offer', :foreign_key => 'receiver_id'
 
   validates :title, :price, :photos, :description, presence: true
+  validates :price, inclusion: { in: 0..3 }
   validates :title, uniqueness: true
 end

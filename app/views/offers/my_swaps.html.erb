@@ -1,10 +1,10 @@
-<% if @my_offers.empty? %>
+<% if @my_swaps.empty? %>
   <div class="chat-container d-flex flex-column justify-content-center align-items-center mt-5">
-    <h2 class="center">No offers to swap yet!</h2>
+    <h2 class="center">No swaps yet!</h2>
     <%= link_to "Look at items to swap!", items_path, class: "btn btn-primary save-btn my-1" %>
   </div>
 <% else %>
-  <% @my_offers.each do |offer| %>
+  <% @my_swaps.each do |offer| %>
   <div class="chat-container">
       <div class="my-1">
         <div class="card-product">
@@ -24,8 +24,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-      <%= link_to "<i class='fas fa-sync-alt icon-b navbar-brand'></i> Swap it!".html_safe, offer_confirm_offer_path(offer), class: "btn btn-primary swap-it-btn m-3" %>
-      <%= link_to "<i class='fas fa-times red'></i> Reject Swap".html_safe, offer_decline_offer_path(offer), class: "btn btn-primary save-btn m-3" %>
+      <%= link_to "<i class='fas fa-sync-alt icon-b navbar-brand'></i> Swapped!".html_safe, "#", class: "btn btn-primary swap-it-btn m-3" %>
     </div>
     <div class="chat-container">
         <div class="my-1">

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :username, :location, :photo, :street, :zipcode, :streetnumber, :city, presence: true
   validates :username, uniqueness: true
   geocoded_by :address
-  # after_validation :geocode, if: :will_save_change_to_address?
+  after_validation :geocode, if: :will_save_change_to_address?
 
   def address
     [streetnumber, street, city, zipcode].compact.join(', ')

@@ -11,7 +11,7 @@ class LikedController < ApplicationController
   def create
     params[:user_id] = current_user.id
     @like = Liked.new(like_params)
-    skip_authorization
+    authorize @like
     if @like.save
       flash[:notice] = 'Item Saved!'
     else
@@ -28,7 +28,7 @@ class LikedController < ApplicationController
     else
       flash[:alert] = @like.errors.full_messages.join(', ')
     end
-    skip_authorization
+    authorize @like
     redirect_to item_path(@like.item)
   end
 

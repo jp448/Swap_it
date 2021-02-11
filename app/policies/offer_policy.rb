@@ -16,4 +16,16 @@ class OfferPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def offer_decline?
+    true
+  end
+
+  def offer_confirm?
+    true
+  end
+
+  def my_swaps?
+    true
+  end
 end

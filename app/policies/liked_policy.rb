@@ -6,6 +6,8 @@ class LikedPolicy < ApplicationPolicy
   end
 
   def create?
+    # I want to make sure a user can't like their own item...
+    # record.user == !user
     true
   end
 

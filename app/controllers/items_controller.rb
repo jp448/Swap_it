@@ -2,11 +2,12 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.all
     @items = policy_scope(Item)
+#@items = Item.all.select { |item| item.active }
     if params[:tags].present?
       @selected_tags = params[:tags].split(",")
       @items = Item.joins(:tags).where(tags: { name: @selected_tags }).group('items.id').having("count('tags.name') = ?", @selected_tags.size)
+      @items = @items.select { |item| item.active }
     else
       @selected_tags = []
     end
@@ -48,6 +49,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user = current_user
+    @item.active = true
     authorize @item
     if @item.save!
       redirect_to item_path(@item)
@@ -72,15 +74,15 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy
-
+    @item.active = false
+    authorize @item
     # no need for app/views/restaurants/destroy.html.erb
     redirect_to items_path, notice: 'The item was successfully destroyed.'
   end
 
   def my_items
-    skip_authorization
-    @my_items = Item.where(user_id: current_user.id).to_a
+    @my_items = Item.all.select { |item| item.user == current_user && item.active }
+    authorize @my_items
   end
 
   private
