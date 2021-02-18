@@ -33,8 +33,6 @@ gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
 gem 'faker'
 gem 'geocoder'
-gem 'factory_bot_rails', '~> 6.1'
-
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
@@ -64,6 +62,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'factory_bot_rails', '~> 6.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
